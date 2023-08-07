@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Switch, Route } from "react-router";
+import { Route, Routes } from 'react-router-dom'
 import ProductsPage from "./pages/ProductsPage";
 import CartPage from "./pages/CartPage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -34,12 +34,11 @@ export default function App() {
   };
   return (
     <CartContext.Provider value={{ cart, increaseQuantity, decreaseQuantity }}>
-      {/* <Switch>
-        <Route exact={true} path="/cart" component={CartPage} />
-        <Route exact={true} path="/" component={ProductsPage} />
-        <Route component={NotFoundPage} />
-      </Switch> */}
-      <NotFoundPage />
+      <Routes>
+        <Route exact={true} path="/cart" element={<CartPage  />} />
+        <Route exact={true} path="/" element={<ProductsPage />} />
+        <Route element={<NotFoundPage />} />
+      </Routes>
     </CartContext.Provider>
   );
 }

@@ -3,7 +3,7 @@ import CartContext from "./../../contexts/CartContext";
 import { Link } from "react-router-dom";
 
 function Cart() {
-  const [cart, increaseQuantity, decreaseQuantity] = useContext(CartContext);
+  const [cart] = useContext(CartContext);
   const cartList = cart ? Object.values(cart) : [];
   if (cartList.length === 0) {
     return <> No items </>;

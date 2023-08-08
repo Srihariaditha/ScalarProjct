@@ -1,4 +1,4 @@
-import AddToCart from "../AddToCart/AddToCart";
+import ReduxAddToCart from "../ReduxAddToCart/ReduxAddToCart";
 import styles from "./ProductCard.module.css";
 export default function ProductCard({ product }) {
   // console.log("productCart", product.id);
@@ -6,7 +6,7 @@ export default function ProductCard({ product }) {
     <div className={styles.card}>
       <h3>{product.title}</h3>
       <p>{product.price.value}</p>
-      <AddToCart product={product} />
+      <ReduxAddToCart product={product} />
     </div>
   );
 }

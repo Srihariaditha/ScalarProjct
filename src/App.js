@@ -6,7 +6,6 @@ import NotFoundPage from "./pages/NotFoundPage";
 
 import "./styles.css";
 import CartContext from "./contexts/CartContext";
-
 export default function App() {
   const [cart, setCart] = useState({});
   const increaseQuantity = (product) => {

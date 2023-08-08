@@ -48,31 +48,49 @@ const categories = [
 function Search() {
   const [category, setCategory] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
-  const debouncedSearch = useRef(
-    debounce(async (searchTerm) => {
-      // fetch search results using searchTerm and update state
-      // const result = categories.filter(function (category) {
-      //   return category.includes(searchTerm.toLowerCase());
-      // });
-      if (searchTerm) {
-        const json = await fetch(
-          `https://602fc537a1e9d20017af105e.mockapi.io/api/v1/products?title=${searchTerm}`
-        );
-        const res = await json.json();
-        console.log(res);
+  const search = async (searchTerm) => {
+    // fetch search results using searchTerm and update state
+    // const result = categories.filter(function (category) {
+    //   return category.includes(searchTerm.toLowerCase());
+    // });
+    if (searchTerm) {
+      const json = await fetch(
+        `https://602fc537a1e9d20017af105e.mockapi.io/api/v1/products?title=${searchTerm}`
+      );
+      const res = await json.json();
+      console.log(res);
 
-        console.log("Fetching search results for:", searchTerm);
-      }
-    }, 500)
-  );
+      console.log("Fetching search results for:", searchTerm);
+    }
+  }
+
+  // const debouncedSearch = useRef(
+  //   debounce(async (searchTerm) => {
+  //     // fetch search results using searchTerm and update state
+  //     // const result = categories.filter(function (category) {
+  //     //   return category.includes(searchTerm.toLowerCase());
+  //     // });
+  //     if (searchTerm) {
+  //       const json = await fetch(
+  //         `https://602fc537a1e9d20017af105e.mockapi.io/api/v1/products?title=${searchTerm}`
+  //       );
+  //       const res = await json.json();
+  //       console.log(res);
+
+  //       console.log("Fetching search results for:", searchTerm);
+  //     }
+  //   }, 500)
+  // );
 
   useEffect(() => {
-    debouncedSearch.current(searchTerm);
-  }, [debouncedSearch, searchTerm]);
+    search(searchTerm);
+  }, [searchTerm]);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
+
+  const dbSearch = debounce(handleSearchChange, 500)
 
   return (
     <div id="search">
@@ -86,7 +104,7 @@ function Search() {
           </option>
         ))}
       </select>
-      <input type="text" onChange={handleSearchChange} value={searchTerm} />
+      <input type="text" value={searchTerm} onChange={dnSearch}/>
     </div>
   );
 }

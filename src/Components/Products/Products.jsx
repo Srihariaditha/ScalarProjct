@@ -10,12 +10,11 @@ function Products() {
     fetch("https://602fc537a1e9d20017af105e.mockapi.io/api/v1//products")
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
         setProducts(result);
         setIsLoading(false);
       })
       .catch((err) => console.log(err));
-  }, [products]);
+  }, []);
 
   if (isLoading) {
     return <div> Loading </div>;

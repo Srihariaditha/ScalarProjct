@@ -1,12 +1,17 @@
 import { useContext } from "react";
 import CartContext from "./../../contexts/CartContext";
 import { Link } from "react-router-dom";
+import CartTotal from "../CartTotal/CartTotal";
 
 function Cart() {
-  const [cart] = useContext(CartContext);
+  const {cart} = useContext(CartContext);
   const cartList = cart ? Object.values(cart) : [];
   if (cartList.length === 0) {
-    return <> No items </>;
+    return (
+    <> 
+    <Link to="/">back</Link>
+    <span>No items</span></>
+    );
   } else {
     return (
       <>
@@ -16,9 +21,11 @@ function Cart() {
             <li key={item.id}>
               <div>{item.title}</div>
               <div>Quantity: {item.quantity}</div>
+              <div> Item Total: {item.quantity * item.price.value}</div>
             </li>
           ))}
         </ol>
+        <CartTotal />
       </>
     );
   }
